@@ -1,0 +1,29 @@
+@import './colors.scss';
+
+.addedItem {
+    background-color: $greyColor;
+    border-radius: 25px;
+    margin: 15px 5px;
+    padding: 5px 15px;
+    font-size: 12px;
+    color: white;
+    display: flex;
+    align-items: center;
+    transition: ease-in .1s;
+
+    &:hover {
+        background-color: $darkerGrey;
+    }
+    &__button {
+        background-color: white;
+        color: $darkerGrey;
+        border:none;
+        border-radius: 50%;
+        transition: ease-in .1s;
+
+        &:hover {
+            background-color: $pastelRed;
+            color:white;
+        }
+    }
+}

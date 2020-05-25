@@ -1,0 +1,20 @@
+@import "./components/styles/colors.scss";
+
+.scrapeForm {
+  border-right: 1px solid $greyColor;
+  height: 100vh
+}
+
+.outputForm > textarea {
+  margin-top: 25px;
+  width: 500px;
+}
+
+$breakpoint-tablet: 1200px;
+
+@media (max-width: $breakpoint-tablet) {
+  .scrapeForm {
+    border-right: none;
+    height: auto;
+  }
+}
