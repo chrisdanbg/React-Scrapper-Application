@@ -24,15 +24,21 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container>
-        <div className="row mx-auto d-flex">
+      <div className="h-100vh">
+        <div className="row h-100vh justify-content-center align-items-center sc-background">
           <ScrapeForm handleWriteFollows={this.handleWriteFollows}></ScrapeForm>
+        </div>
+        <div className="op-background">
+        <Container className="container">
           <OutputForm
             follow={this.state.follow}
+            freeDownloadLink={this.state.freeDownloadLink}
+            buyLink={this.state.buyLink}
             isLoaded={this.state.isLoaded}
           ></OutputForm>
+        </Container>
         </div>
-      </Container>
+      </div>
     );
   }
 }

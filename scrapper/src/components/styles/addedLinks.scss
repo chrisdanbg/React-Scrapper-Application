@@ -13,17 +13,21 @@
 
     &:hover {
         background-color: $darkerGrey;
+        transform: translateY(-10px) !important;
     }
     &__button {
         background-color: white;
         color: $darkerGrey;
         border:none;
         border-radius: 50%;
+        height: 25px;
+        width: 25px;
         transition: ease-in .1s;
 
         &:hover {
             background-color: $pastelRed;
             color:white;
+            
         }
     }
 }

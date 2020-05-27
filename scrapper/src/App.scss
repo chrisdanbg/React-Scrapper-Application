@@ -1,13 +1,39 @@
 @import "./components/styles/colors.scss";
 
+body {
+  background-color: $background !important;
+}
+
+.h-100vh {
+  height: 100vh;
+}
+
+.sc-background {
+  background:linear-gradient(120deg, #ff8800, #ff3300);
+}
+
+.op-background {
+  background:linear-gradient(120deg, #122B40, #446CB3);
+}
+
 .scrapeForm {
   border-right: 1px solid $greyColor;
   height: 100vh
 }
 
+.c-form {
+  border: none !important;
+  border-radius: 0px !important;
+  border-bottom: 1px solid $greyColor !important;
+}
+
 .outputForm > textarea {
   margin-top: 25px;
   width: 500px;
+}
+
+.shadow {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
 }
 
 $breakpoint-tablet: 1200px;

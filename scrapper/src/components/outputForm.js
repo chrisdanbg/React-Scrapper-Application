@@ -1,5 +1,6 @@
 import React from "react";
-import Folow from "./followPrinter";
+
+import './styles/outputForm.scss';
 
 class OutputForm extends React.Component {
   constructor(props) {
@@ -8,25 +9,30 @@ class OutputForm extends React.Component {
     this.appendUser = this.appendUser.bind(this);
 
     this.state = {
-      text:
-        "CDeepMusic - Deep / Nu Disco / Chill House \n\n" +
-        "☑️  Subscribe: http://bit.ly/subcdeep \n\n" +
-        "☑️  Free Download: https://hypeddit.com/track/90hwti \n\n" +
-        "☑️  CDeep on Spotify: http://bit.ly/CDeepSpotify \n\n" +
-        "☑️  CDeepMusic on Facebook: https://www.facebook.com/CDeepMusicOriginal \n\n" +
-        "☑️ Visual Identity by Studio GRIS \n" +
-        "http://studio-gris.com\n" +
-        "https://www.behance.net/GrisStudio\n" +
-        "https://www.facebook.com/studiogris\n" +
-        "https://instagram.com/studiogris\n\n" +
-        "More at:\n \n",
       isDisplayed: false,
     };
   }
 
   componentDidUpdate() {
     if (this.props.isLoaded && !this.state.isDisplayed) {
-      let currentText = this.state.text;
+
+      let { freeDownloadLink, buyLink } = this.props.follow;
+
+      let text =
+        `CDeepMusic - Deep / Nu Disco / Chill House \n\n` +
+        `☑️  Subscribe: http://bit.ly/subcdeep \n\n` +
+        `${freeDownloadLink}` +
+        `${buyLink}` +
+        `☑️  CDeep on Spotify: http://bit.ly/CDeepSpotify \n\n` +
+        `☑️  CDeepMusic on Facebook: https://www.facebook.com/CDeepMusicOriginal \n\n` +
+        `☑️ Visual Identity by Studio GRIS \n` +
+        `http://studio-gris.com\n` +
+        `https://www.behance.net/GrisStudio\n` +
+        `https://www.facebook.com/studiogris\n` +
+        `https://instagram.com/studiogris\n\n` +
+        `More at:\n \n`;
+
+      let currentText = text;
 
       this.props.follow.users.map((user, i) => {
         let createdLinks = this.appendUser(user);
@@ -50,7 +56,7 @@ class OutputForm extends React.Component {
 
   render() {
     return (
-      <div className="col-6">
+      <div className="w-100 p-5">
         <textarea
           value={this.state.text}
           rows="30"

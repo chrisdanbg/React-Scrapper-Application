@@ -18,7 +18,7 @@ class Follow extends React.Component {
       <React.Fragment>
         {this.props.links.map((link, index) => {
           return (
-            <div key={index} className="addedItem">
+            <div key={index} className="addedItem shadow">
               <p className="my-1 mx-2">{link}</p>
               <button
                 className="my-1 addedItem__button"

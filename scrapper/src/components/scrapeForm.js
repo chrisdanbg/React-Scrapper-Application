@@ -1,9 +1,24 @@
 import React from "react";
-import { Form, Button, Spinner } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
+import { Button,withStyles } from '@material-ui/core';
 import Folow from "./followPrinter";
 import AddedLinks from "./addedLinks";
 
 import "./styles/scrapeForm.scss";
+const ColorButton = withStyles(() => ({
+  root: {
+    border: '1px solid #ff8800',
+    transition: '.5s all',
+    '&:hover': {
+      backgroundColor: '#ff8800',
+      border:'1px solid #ff8800',
+      color:'#fff !important',
+      transform: 'translateY(-5px)'
+    },
+    color:'#ff8800 !important',
+    
+  },
+}))(Button);
 
 class ScrapeForm extends React.Component {
   constructor(props) {
@@ -15,6 +30,8 @@ class ScrapeForm extends React.Component {
     this.state = {
       soundcloud: "",
       track: "",
+      freeDl: "",
+      buyLink: "",
       isLoaded: false,
       loading: false,
       follow: {},
@@ -75,12 +92,24 @@ class ScrapeForm extends React.Component {
         return res.json();
       })
       .then((res) => {
+        res.freeDownloadLink = '';
+        res.buyLink = '';
+
         this.setState({
           loading: false,
           follow: res,
           isLoaded: true,
           isSubmitDisabled: false,
         });
+
+        if (this.state.freeDl.length > 0) {
+          res.freeDownloadLink = `☑️  Free Download: ` + this.state.freeDl + `\n\n`;
+        } 
+
+        if (this.state.buyLink.length > 0) {
+          res.buyLink = `☑️  Buy // Stream: ` + this.state.buyLink + `\n\n`;
+        }
+
         this.props.handleWriteFollows(res);
       })
       .catch((err) => {
@@ -95,33 +124,60 @@ class ScrapeForm extends React.Component {
     };
 
     return (
-      <div className="col-6">
+      <div className="w-50 scrape-form shadow">
         <Form className="" onSubmit={this.handleSubmit}>
           <Form.Group className="row justify-content-between">
             <Form.Control
-              className="my-4 col-9"
+              className="my-4 col-9 c-form"
               type="text"
               placeholder="Soundcloud Link"
               name="soundcloud"
               onChange={this.handleChange}
               value={this.state.soundcloud}
             ></Form.Control>
-            <Button className="col-2 my-4" onClick={this.addItem}>
+            <ColorButton variant="outlined" color="primary" className="col-2 my-4 shadow" onClick={this.addItem}>
               +
-            </Button>
+            </ColorButton>
             <Form.Control
-              className="my-4 col-12"
+              className="my-4 col-12 c-form"
               type="text"
               placeholder="Track Name"
               name="track"
               onChange={this.handleChange}
               value={this.state.track}
             ></Form.Control>
-            <Button type="submit" disabled={this.state.isSubmitDisabled}>
-              Submit
+             <Form.Control
+              className="my-4 col-12 c-form"
+              type="text"
+              placeholder="Free Download Link"
+              name="freeDl"
+              onChange={this.handleChange}
+              value={this.state.freeDl}
+            ></Form.Control>
+            <Form.Control
+              className="my-4 col-12 c-form"
+              type="text"
+              placeholder="Buy Link"
+              name="buyLink"
+              onChange={this.handleChange}
+              value={this.state.buyLink}
+            ></Form.Control>
+            <Button variant="outlined" color="primary" type="submit" className="shadow" disabled={this.state.isSubmitDisabled}>
+              Scrape
             </Button>
           </Form.Group>
         </Form>
+        { this.state.isLoaded ? (
+          <Folow className="col-12 w-50 mx-auto" follow={this.state.follow}></Folow>
+        ) : (
+          ""
+        )}
+        <div className="addedLinks row">
+          <AddedLinks
+            links={this.state.addedLinks}
+            handleDelete={this.handleDelete}
+          ></AddedLinks>
+        </div>
         {this.state.loading ? (
           <div className="d-flex justify-content-center align-items-center">
             <Spinner
@@ -133,17 +189,7 @@ class ScrapeForm extends React.Component {
               <span className="sr-only">Loading...</span>
             </Spinner>
           </div>
-        ) : this.state.isLoaded ? (
-          <Folow className="col-12 w-50 mx-auto" follow={this.state.follow}></Folow>
-        ) : (
-          ""
-        )}
-        <div className="addedLinks row">
-          <AddedLinks
-            links={this.state.addedLinks}
-            handleDelete={this.handleDelete}
-          ></AddedLinks>
-        </div>
+        ) : ""}
       </div>
     );
   }
