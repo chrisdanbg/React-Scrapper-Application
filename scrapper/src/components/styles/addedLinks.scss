@@ -10,7 +10,8 @@
     display: flex;
     align-items: center;
     transition: ease-in .1s;
-
+    word-break: break-all;
+    
     &:hover {
         background-color: $darkerGrey;
         transform: translateY(-10px) !important;

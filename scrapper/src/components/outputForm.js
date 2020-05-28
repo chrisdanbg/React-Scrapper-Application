@@ -60,7 +60,7 @@ class OutputForm extends React.Component {
         <textarea
           value={this.state.text}
           rows="30"
-          className="w-100"
+          className="w-100 shadow"
         ></textarea>
       </div>
     );

@@ -5,6 +5,9 @@ import Folow from "./followPrinter";
 import AddedLinks from "./addedLinks";
 
 import "./styles/scrapeForm.scss";
+
+const apiUrl = 'https://youtube-scrapper-react.herokuapp.com/api';
+
 const ColorButton = withStyles(() => ({
   root: {
     border: '1px solid #ff8800',
@@ -81,7 +84,7 @@ class ScrapeForm extends React.Component {
       isSubmitDisabled: true,
     });
 
-    fetch("http://localhost:9000/api", {
+    fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
