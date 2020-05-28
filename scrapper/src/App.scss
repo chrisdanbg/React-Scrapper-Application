@@ -36,11 +36,22 @@ body {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
 }
 
+.w-mb {
+  width: 50% !important;
+}
+
 $breakpoint-tablet: 1200px;
+$breakpoint-mobile: 768px;
 
 @media (max-width: $breakpoint-tablet) {
   .scrapeForm {
     border-right: none;
     height: auto;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .w-mb {
+    width: 100% !important; 
   }
 }

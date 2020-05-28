@@ -127,7 +127,7 @@ class ScrapeForm extends React.Component {
     };
 
     return (
-      <div className="w-50 scrape-form shadow">
+      <div className="w-mb scrape-form shadow">
         <Form className="" onSubmit={this.handleSubmit}>
           <Form.Group className="row justify-content-between">
             <Form.Control
